@@ -82,3 +82,33 @@
   元素.width = pageWidth
   元素.hegiht = pageHeight
 ```
+## 手机端运行
+支持blackboard在手机端使用<br>
+```
+<meta name="viewport" content="width=device-width, user-scale=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+```
+mouse事件在移动端并不是很适用，需要引入`ontouch`事件<br>
+```
+  开始状态：
+  yyy.ontouchstart = function(aaa){
+    console.log('start')
+  }
+  运动状态:
+  yyy.ontouchmove = function(aaa){
+    console.log('move')
+  }
+  停止状态:
+  yyy.ontouchend = function(aaa){
+    console.log('end')
+  }
+```
+特性检测：<br>
+检测设备是否支持触屏或者不支持触屏，不能简单的根据屏幕尺寸来判断设备是否支持触屏；特例：surface同时支持触屏和非触屏<br>
+```
+  if(document.body.ontouchstart !== undefined){
+    //触屏设备
+  }else{
+    //非触屏设备
+  }
+```
+移动设备兼容

@@ -22,39 +22,79 @@ function drawCircle(x,y,radius){
 
 var using = false
 var lastPoint = {x: undefined, y: undefined}
-yyy.onmousedown = function(aaa){    //按下状态
-  var x = aaa.clientX
-  var y = aaa.clientY
-  using = true  
-  if(eraserEnable){
-    context.clearRect(x-5,y-5,10,10)
-  }else{
-    lastPoint = {x: x ,y: y}
-    drawCircle(x,y,3)
+
+//特性检测
+if(document.body.ontouchstart !== undefined){
+  //触屏设备
+  yyy.ontouchstart = function(aaa){
+    var x = aaa.touches[0].clientX
+    var y = aaa.touches[0].clientY
+    using = true  
+    if(eraserEnable){
+      context.clearRect(x-5,y-5,10,10)
+    }else{
+      lastPoint = {x: x ,y: y}
+      drawCircle(x,y,3)
+    }
+  }
+
+  yyy.ontouchmove = function(aaa){
+    var x = aaa.touches[0].clientX
+    var y = aaa.touches[0].clientY
+    if(eraserEnable){
+      if(using){
+        using = true
+        context.clearRect(x-5,y-5,10,10)    
+      }
+    }else{
+      if(using){
+        var newPoint = {x: x, y: y}
+        drawCircle(x,y,3)
+        drawLine(lastPoint.x,lastPoint.y, newPoint.x, newPoint.y)
+        lastPoint = newPoint
+      }
+    }
+  }
+  yyy.ontouchend = function(){
+    using = false
+  }
+}else{
+  //非触屏设备
+  yyy.onmousedown = function(aaa){    //按下状态
+    var x = aaa.clientX
+    var y = aaa.clientY
+    using = true  
+    if(eraserEnable){
+      context.clearRect(x-5,y-5,10,10)
+    }else{
+      lastPoint = {x: x ,y: y}
+      drawCircle(x,y,3)
+    }
+    
   }
   
-}
-
-yyy.onmousemove = function(aaa){ //滑动状态
-  var x = aaa.clientX
-  var y = aaa.clientY
-  if(eraserEnable){
-    if(using){
-      using = true
-      context.clearRect(x-5,y-5,10,10)    
-    }
-  }else{
-    if(using){
-      var newPoint = {x: x, y: y}
-      drawCircle(x,y,3)
-      drawLine(lastPoint.x,lastPoint.y, newPoint.x, newPoint.y)
-      lastPoint = newPoint
+  yyy.onmousemove = function(aaa){ //滑动状态
+    var x = aaa.clientX
+    var y = aaa.clientY
+    if(eraserEnable){
+      if(using){
+        using = true
+        context.clearRect(x-5,y-5,10,10)    
+      }
+    }else{
+      if(using){
+        var newPoint = {x: x, y: y}
+        drawCircle(x,y,3)
+        drawLine(lastPoint.x,lastPoint.y, newPoint.x, newPoint.y)
+        lastPoint = newPoint
+      }
     }
   }
-}
-
-yyy.onmouseup = function(aaa){  //停止状态
-  using = false
+  
+  yyy.onmouseup = function(aaa){  //停止状态
+    using = false
+  }
+  
 }
 
 function drawLine(x1,y1,x2,y2){
