@@ -5,14 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Blackboard</title>
+  <link  rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_753976_jw7h6rdunpb.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <canvas id="xxx" width=600px height=600px></canvas>
   <div class="actions" id="actions">
-    <button id="eraser">橡皮擦</button>
-    <button id="brush">画笔</button>  
+    <span class="iconfont icon-chalk active" id="pen"></span><span class="iconfont icon-heibanca " id="eraser"></span><span class="iconfont icon-clear" id="clear"></span>
+    <span class="iconfont icon-save " id="download"></span>
   </div>
+  <ol class="colors ">
+    <li class="red" id="red"></li>
+    <li class="yellow" id="yellow"></li>
+    <li class="blue" id="blue"></li>
+  </ol>
+  <ol class="size">
+    <li class="thin" id="thin"></li>
+    <li class="thick" id="thick"></li>    
+  </ol>
   <script src="./main.js"></script>
 </body>
 </html>

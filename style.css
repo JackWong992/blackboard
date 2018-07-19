@@ -1,23 +1,89 @@
 #xxx {  
-  background: #000;
+  background: #ddd;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 * {
   margin: 0;
   padding: 0;
 }
+body {
+  overflow: hidden;
+}
+ol,li {
+  list-style: none;
+}
 .actions {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
-  background: #fff;
+  padding: 20px 0 0 16px;
 }
-.actions > #brush {
-  display: none;
-}
-.actions.x > #brush {
+.actions span {
   display: inline-block;
+  background: #fff;
+  font-size: 24px;
+  transition: all .3s;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  margin-left: 12px;
+  padding: 3px;
 }
-.actions.x > #eraser {
-  display: none;
+
+.actions>span.active {
+  border-color: red;
+  color: red;
+  transform: scale(1.2);
+}
+
+.colors{
+  position: fixed;
+  top: 93%;
+  left: 4%;
+  border: 3px solid #fff;
+  border-radius: 10px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.colors li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 8px 10px;  
+  border: 2px solid #000;
+}
+.colors li.red {
+  background: red; 
+}
+.colors li.yellow{
+  background: yellow;
+}
+.colors li.blue {
+  background: blue;
+}
+.colors li.active {
+  transform: scale(1.2);
+  transition: all .3s;  
+}
+
+.size {
+  position: fixed;
+  right: 10px;
+  top: 5px;
+}
+.size li {
+  margin: 20px 0 ;
+}
+.size > .thin {
+  height: 0px;
+  width: 40px;
+  border-top: 3px solid black;
+}
+.size > .thick {
+  height: 0px;
+  width: 40px;
+  border-top: 6px solid black;
 }
